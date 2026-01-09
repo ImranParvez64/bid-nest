@@ -1,7 +1,7 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import SingleAuctionItems from "./items/SingleAuctionItems";
 
-const Autions = () => {
+const Autions = ({ handleFavoriteClick, favorites }) => {
   const [auctions, setAuctions] = useState([]);
 
   useEffect(() => {
@@ -12,11 +12,15 @@ const Autions = () => {
 
   return (
     <div>
-      <h2 className="text-3xl text-blue-700 font-semibold">Active Auctions</h2>
-      <p className="font-semibold">Discover and bid on extraordinary items</p>
+      <h2 className="text-3xl text-blue-700 font-semibold">
+        Active Auctions
+      </h2>
+      <p className="font-semibold">
+        Discover and bid on extraordinary items
+      </p>
+
       <div className="overflow-x-auto">
-        <table className="table bg-white w-full mt-5 text-center" >
-          {/* head */}
+        <table className="table bg-white w-full mt-5 text-center">
           <thead>
             <tr>
               <th className="text-start">Items</th>
@@ -25,12 +29,14 @@ const Autions = () => {
               <th>Bid Now</th>
             </tr>
           </thead>
+
           <tbody>
-           {
-            auctions.map((auction) => (
+            {auctions.map((auction) => (
               <SingleAuctionItems
                 key={auction.id}
                 auction={auction}
+                handleFavoriteClick={handleFavoriteClick}
+                favorites={favorites}
               />
             ))}
           </tbody>
